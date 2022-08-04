@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     // variable for textview
     private TextView textview;
+    private ProgressBar progressBar;
 
     // when orientation change the resources are destroyed and
     // new resources created due that Async task no longer
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         textview = findViewById(R.id.textview);            // reference the textview
+        progressBar = findViewById(R.id.progressBar);      // referencing the progressbar
 
         // check the bundle if not null then pass the saved string
         if(savedInstanceState != null) {
@@ -38,6 +41,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void startTask(View view) {
         textview.setText(R.string.napping);
-        new SimpleAsyncTask(this, textview).execute();
+        new SimpleAsyncTask(textview, progressBar).execute();
     }
 }
